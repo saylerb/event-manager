@@ -8,7 +8,21 @@ contents = CSV.open("event_attendees.csv", headers: true, header_converters: :sy
 
 contents.each do |row|
   name = row[:first_name]
-  puts name
+  zipcode = row[:zipcode]
+
+  if zipcode.nil? 
+    zipcode = "00000"
+  elsif zipcode.length == 5
+    zipcode 
+  elsif zipcode.length > 5
+    zipcode = zipcode[0..4]
+  elsif zipcode.length < 5
+    zipcode = zipcode.rjust(5, "0")
+  else
+  end
+    
+
+  puts "#{name} #{zipcode}"
 end
 
 
